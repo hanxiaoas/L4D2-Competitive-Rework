@@ -1,0 +1,80 @@
+// Advertisements 2.1
+// by Tsunami
+//
+// Types
+// -----
+// center: Center message
+// chat: Chat message
+// hint: Hint message
+// menu: Menu message
+// top: Top message
+//
+// Flags (optional)
+// -----
+// Accepts flags of admins that will not see the advertisement.
+// When omitted everyone will see the advertisement.
+// When left empty only admins will see the advertisement.
+
+"Advertisements"
+{
+    "1"
+    {
+        "chat"		"{green}本服没啥高防，被d就寄"
+    }
+    "2"
+    {
+        "chat"		"{green}拳不扩散，请不要随意拳收路人，小心恩怨"
+    }
+    "3"
+    {
+        "chat"      "{green}所有的权限都针对熟人，我们不会随意权限路人 :)"
+    }
+    "4"
+    {
+        "chat"      "{green}改lerp：cl_interp 0;cl_interp_ratio 0"
+    }
+    "5"
+    {
+        "chat"      "{green}hy指的是混野，所以配置名是我随便起的 :)"
+    }
+    "6"
+    {
+        "chat"      "{green}旁观占位不上？快用!kickspecs，恩怨我替你打"
+    }
+    "7"
+    {
+        "chat"      "{green}z: 又黑我一点血 sp: 你背后有猴子"
+    }
+    "8"
+    {
+        "chat"      "{green}本服暂时没qq群，不过你可以去隔壁558382058看看，每月有高达200多的红包局"
+    }
+    "9"
+    {
+        "chat"      "{green}准备阶段你看到的怪东西开始后就没了"
+    }
+    "10"
+    {
+        "chat"      "{green}本服萌新居多，请多加体谅一下"
+    }
+    "11"
+    {
+        "chat"      "!rmatch/!match{green}能换配置，看谁不爽直接切1v1恩怨他，记着叫我来乐"
+    }
+    "12"
+    {
+        "chat"      "{green}被炸烦了？可以试一试l4d2love.com，国内的匹配平台，不过现在还没什么人 :)"
+    }
+    "13"
+    {
+        "chat"      "{green}有人抢萌新tank 我不说是谁"
+    }
+    "14"
+    {
+        "chat"      "{green}我宣布安可是喵喵屋大爹"
+    }
+    "15"
+    {
+        "chat"      "{green}本服偶尔会卡匹配，如果长时间进不来可以试试{default}!votemenu{green}关闭匹配"
+    }
+}

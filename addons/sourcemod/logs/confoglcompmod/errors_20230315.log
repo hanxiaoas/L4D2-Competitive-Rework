@@ -1,0 +1,53 @@
+L 03/15/2023 - 00:15:55: [CvarSettings] [c4m1_milltown_a] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 00:16:17: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 00:16:18: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 00:16:18: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 00:16:18: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 00:16:18: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 17:50:32: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 18:01:16: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 18:01:17: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 18:01:17: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 18:01:17: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 18:01:17: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 18:01:17: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 18:47:12: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 18:47:13: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 18:47:13: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 18:47:13: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 18:47:13: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 18:47:13: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 18:48:57: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 18:48:57: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 18:48:57: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 18:48:57: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 18:48:57: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 20:19:00: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 20:19:01: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 20:19:01: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 20:19:01: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 20:19:01: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 20:19:01: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 20:20:48: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 20:20:49: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 20:20:49: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 20:20:49: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 20:20:49: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 20:20:49: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 20:30:05: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 20:30:06: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 20:30:06: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 20:30:06: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 20:30:06: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.
+L 03/15/2023 - 21:54:29: [CvarSettings] [c3m1_plankcountry] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 21:54:51: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 03/15/2023 - 21:54:52: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 03/15/2023 - 21:54:52: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 03/15/2023 - 21:54:52: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 03/15/2023 - 21:54:52: [CvarSettings] [c2m1_highway] Could not find CVar specified (l4d2_tankswap_choicetype)
+L 03/15/2023 - 21:54:52: [CvarSettings] [c2m1_highway] Attempt to track ConVar sm_max_lerp, which is already being tracked.

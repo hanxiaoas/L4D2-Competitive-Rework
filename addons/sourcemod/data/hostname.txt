@@ -1,0 +1,15 @@
+"hostname"
+{
+	"27015"
+	{
+		"hostname"		"喵1"
+	}
+	"27016"
+	{
+		"hostname"		"喵1"
+	}
+	"10721"
+	{
+		"hostname"		"[zonemod]萌新喵喵屋#1"
+	}
+}

@@ -1,0 +1,8 @@
+L 02/25/2023 - 22:03:21: [CvarSettings] [c2m1_highway] Could not find CVar specified (sv_pure)
+L 02/25/2023 - 22:03:22: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 02/25/2023 - 22:03:22: [CvarSettings] [c2m1_highway] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 02/25/2023 - 22:03:22: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
+L 02/25/2023 - 22:30:10: [CvarSettings] [c1m1_hotel] Could not find CVar specified (sv_pure)
+L 02/25/2023 - 22:30:10: [CvarSettings] [c1m1_hotel] Attempt to track ConVar sv_consistency, which is already being tracked.
+L 02/25/2023 - 22:30:10: [CvarSettings] [c1m1_hotel] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
+L 02/25/2023 - 22:30:10: [CvarSettings] [c1m1_hotel] Could not find CVar specified (confogl_boss_unprohibit)
