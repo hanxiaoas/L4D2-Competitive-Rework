@@ -2,6 +2,10 @@
 {
 	"ZoneMod Configs"
 	{
+		"hyzmtf"
+		{
+			"name" "ZoneMod 2.8.1(克局ONLY)"
+		}
 		"hyzonemod"
 		{
 			"name" "ZoneMod 2.8.1(混野)"

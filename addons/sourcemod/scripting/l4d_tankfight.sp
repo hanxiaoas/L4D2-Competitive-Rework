@@ -211,9 +211,9 @@ public void OnMapStart()
         PrecacheModel(g_sTankModels[i]);
         PrecacheModel(g_sSurvivorModels[i]);
     }
-    if (IsMissionFinalMap())
+    if (IsMissionFinalMap() || L4D2Direct_GetVSTankToSpawnThisRound(0))
     {
-        CreateTimer(5, Timer_AnounceChangeMap);
+        CreateTimer(20, Timer_AnounceChangeMap);
     }
 }
 public void OnMapEnd()
