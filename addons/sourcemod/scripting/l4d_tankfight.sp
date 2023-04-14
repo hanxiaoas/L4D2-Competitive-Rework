@@ -138,7 +138,7 @@ bool IsCanEndRound(){
         if (!IsClientInGame(i)) continue;
         if (!IsPlayerAlive(i)) continue;
         if (IsSurvivor(i)){
-            if (IsIncapacitated(i) || IsHangingFromLedge(i) || ) return false;
+            if (IsIncapacitated(i) || IsHangingFromLedge(i)) return false;
         }
     }
     return true;
