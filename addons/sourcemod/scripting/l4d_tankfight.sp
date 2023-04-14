@@ -108,6 +108,12 @@ public void OnPluginStart()
     HookEvent("round_end", RoundEnd_Event);
 }
 
+void OnRoundIsLive(){
+    CPrintToChatAll("[{green}!{default}] Tank fight 简要说明");
+    CPrintToChatAll("只有克局，克死亡后进入加时阶段。如果没有人倒地回合结束！");
+    CPrintToChatAll("游戏开始后，生还者会被传送到地图上发光的生还者模型");
+}
+
 Action IsTankFightEnd(Handle timer)
 {
     if (IsTankInGame()) return Plugin_Continue;
@@ -132,7 +138,7 @@ bool IsCanEndRound(){
         if (!IsClientInGame(i)) continue;
         if (!IsPlayerAlive(i)) continue;
         if (IsSurvivor(i)){
-            if (IsIncapacitated(i) || IsHangingFromLedge(i)) return false;
+            if (IsIncapacitated(i) || IsHangingFromLedge(i) || ) return false;
         }
     }
     return true;
