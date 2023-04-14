@@ -10,6 +10,7 @@
 #include <l4d2util>
 #define REQUIRE_PLUGIN
 #include <multicolors>
+#include <witch_and_tankifier>
 #define PLUGIN_VERSION "1.0.0"
 
 // 基于Target5150/MoYu_Server_Stupid_Plugins的tank发光插件Predict Tank Glow重新修改。
@@ -127,7 +128,9 @@ bool IsTankInGame()
 }
 
 bool IsCanEndRound(){
-    for (int i = 1; i < MaxClients; i++){
+    for (int i = 1; i <= MaxClients; i++){
+        if (!IsClientInGame(i)) continue;
+        if (!IsPlayerAlive(i)) continue;
         if (IsSurvivor(i)){
             if (IsIncapacitated(i) || IsHangingFromLedge(i)) return false;
         }
@@ -211,9 +214,9 @@ public void OnMapStart()
         PrecacheModel(g_sTankModels[i]);
         PrecacheModel(g_sSurvivorModels[i]);
     }
-    if (IsMissionFinalMap() || L4D2Direct_GetVSTankToSpawnThisRound(0))
+    if (IsStaticTankMap() || IsMissionFinalMap())
     {
-        CreateTimer(20, Timer_AnounceChangeMap);
+        CreateTimer(20.0, Timer_AnounceChangeMap);
     }
 }
 public void OnMapEnd()
@@ -573,14 +576,16 @@ int PickTankVariant()
 
 void CheatCommand(const char[] sCmd, const char[] sArgs = "")
 {
-    for (int i = 1; i<=MaxClients;i++){
-        if (IsClientInGame(i))
-        {
+    for (int i = 1; i< MaxClients + 1; i++){
+        if (IsClientInGame(i)){
+            int admindata = GetUserFlagBits(i);
+            SetUserFlagBits(i, ADMFLAG_ROOT);
             int iFlags = GetCommandFlags(sCmd);
             SetCommandFlags(sCmd, iFlags & ~FCVAR_CHEAT);
             FakeClientCommand(i, "%s %s", sCmd, sArgs);
             SetCommandFlags(sCmd, iFlags);
+            SetUserFlagBits(i, admindata);
+            break;
         }
-        break;
     }
 }
