@@ -28,7 +28,7 @@ public Plugin myinfo =
 	description = "Changes bIsDominator flag for infected classes. Allows to have native-order quad-caps.",
 	version = "1.2",
 	url = "https://github.com/SirPlease/L4D2-Competitive-Rework"
-}
+}	
 
 public void OnPluginStart()
 {

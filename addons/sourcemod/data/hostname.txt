@@ -1,15 +1,15 @@
 "hostname"
-{
+{	
 	"27015"
 	{
-		"hostname"		"喵1"
-	}
-	"27016"
-	{
-		"hostname"		"喵1"
+		"hostname"		"funny"
 	}
 	"10721"
 	{
-		"hostname"		"[zonemod]萌新喵喵屋#1"
+		"hostname"		"[zonemod]萌新喵喵屋"
+	}
+	"20721"
+	{
+		"hostname"		"[zm TankFight]萌新不喵呜"
 	}
 }

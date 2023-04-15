@@ -11,6 +11,7 @@
 #define REQUIRE_PLUGIN
 #include <multicolors>
 #include <witch_and_tankifier>
+#include <l4d2_hybrid_scoremod>
 #define PLUGIN_VERSION "1.0.0"
 
 // 基于Target5150/MoYu_Server_Stupid_Plugins的tank发光插件Predict Tank Glow重新修改。
@@ -41,11 +42,20 @@ CZombieManager ZombieManager;
 #define IS_VALID_INGAME(%1)     (IS_VALID_CLIENT(%1) && IsClientInGame(%1))
 #define ZC_TANK    8
 
+
+int g_iMapTFType = 0;
+
 enum /*strMapType*/
 {
     MP_FINALE
 };
 
+enum
+{
+    TYPE_NORMAL,
+    TYPE_FINISH,
+    TYPE_STATIC
+};
 static const char g_sTankModels[][TANK_MODEL_STRLEN] = {
     "models/infected/hulk.mdl",
     "models/infected/hulk_dlc3.mdl",
@@ -61,7 +71,7 @@ static const char g_sSurvivorModels[][TANK_MODEL_STRLEN] = {
     "N/A" // TankVariant slot
 };
 
-Handle t_IsTankAlive;
+Handle t_IsTankAlive, t_ChangeToNewMap;
 
 int g_iPredictModel = INVALID_ENT_REFERENCE;
 int g_iPredictSurModel = INVALID_ENT_REFERENCE;
@@ -108,8 +118,13 @@ public void OnPluginStart()
     HookEvent("round_end", RoundEnd_Event);
 }
 
-void OnRoundIsLive(){
-    CPrintToChatAll("[{green}!{default}] Tank fight 简要说明");
+public void OnRoundIsLive()
+{
+    if (g_iMapTFType != TYPE_STATIC){
+        KillTimer(t_ChangeToNewMap);
+        t_ChangeToNewMap = INVALID_HANDLE;
+    }
+    CPrintToChatAll("[{green}!{default}] {olive}Tank fight 简要说明");
     CPrintToChatAll("只有克局，克死亡后进入加时阶段。如果没有人倒地回合结束！");
     CPrintToChatAll("游戏开始后，生还者会被传送到地图上发光的生还者模型");
 }
@@ -119,6 +134,7 @@ Action IsTankFightEnd(Handle timer)
     if (IsTankInGame()) return Plugin_Continue;
     if (!IsCanEndRound()) return Plugin_Continue;
     EndTankFightRound();
+    
     return Plugin_Stop;
 }
 
@@ -143,10 +159,28 @@ bool IsCanEndRound(){
     }
     return true;
 }
-
+int healthbonus, damageBonus, pillsBonus;
 // 传送生还者到安全屋并结束本回合
 void EndTankFightRound(){
-    CheatCommand("sm_warpend", "");
+    if (g_iMapTFType == TYPE_FINISH){
+        healthbonus = SMPlus_GetHealthBonus();
+        damageBonus	= SMPlus_GetDamageBonus();
+        pillsBonus	= SMPlus_GetPillsBonus();
+        bool bFlipped = !!GameRules_GetProp("m_bAreTeamsFlipped");
+        int SurvivorTeamIndex = bFlipped ? 1 : 0;
+        int survScore = L4D2Direct_GetVSCampaignScore(SurvivorTeamIndex);
+        L4D2Direct_SetVSCampaignScore(SurvivorTeamIndex, survScore + healthbonus + damageBonus + pillsBonus);
+        CreateTimer(3.5, AnnounceResult);
+        CheatCommand("scenario_end", "");
+    }else{
+        CheatCommand("sm_warpend", "");
+    }
+}
+
+Action AnnounceResult(Handle timer)
+{
+    CPrintToChatAll("[{green}!{default}] 生还者本关得分：{olive}+%i", healthbonus + damageBonus + pillsBonus);
+    return Plugin_Stop;
 }
 
 //=========================================================================================================
@@ -192,6 +226,7 @@ void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 }
 
 public Action L4D_OnFirstSurvivorLeftSafeArea(int x){
+    if (g_iMapTFType == TYPE_STATIC) return Plugin_Continue;
     if (!IsInReady()){
         for (int i = 1; i <= MaxClients; i++){
             if (IsSurvivor(i)){
@@ -199,7 +234,7 @@ public Action L4D_OnFirstSurvivorLeftSafeArea(int x){
             }
         }
     }else{
-        return;
+        return Plugin_Continue;
     }
 
     if (IsValidEdict(g_iPredictSurModel)){
@@ -212,6 +247,7 @@ public Action L4D_OnFirstSurvivorLeftSafeArea(int x){
     spawn.IntValue = 1;
     PrintToChatAll("特感将在12S以后允许复活！");
     CreateTimer(12.0, Timer_DelaySpawn, false, TIMER_FLAG_NO_MAPCHANGE);
+    return Plugin_Continue;
 }	
 
 public void OnMapStart()
@@ -220,7 +256,14 @@ public void OnMapStart()
         PrecacheModel(g_sTankModels[i]);
         PrecacheModel(g_sSurvivorModels[i]);
     }
-    if (IsStaticTankMap() || IsMissionFinalMap())
+    if (IsStaticTankMap()){
+        g_iMapTFType = TYPE_STATIC;
+    }else if (IsMissionFinalMap()){
+        g_iMapTFType = TYPE_FINISH;
+    }else{
+        g_iMapTFType = TYPE_NORMAL;
+    }
+    if (g_iMapTFType == TYPE_STATIC)
     {
         CreateTimer(20.0, Timer_AnounceChangeMap);
     }
@@ -234,7 +277,7 @@ public void OnMapEnd()
 Action Timer_AnounceChangeMap(Handle Timer)
 {
     CPrintToChatAll("[{green}!{default}] Tank Fight模式不支持当前地图，在20秒后将自动换图！");
-    CreateTimer(20.0, ChangtToNewMap);
+    t_ChangeToNewMap = CreateTimer(20.0, ChangtToNewMap, _,TIMER_FLAG_NO_MAPCHANGE);
 }
 
 Action Timer_DelaySpawn(Handle timer)
@@ -322,8 +365,6 @@ Action Timer_DelayProcess(Handle timer)
         g_iPredictSurModel = EntIndexToEntRef(g_iPredictSurModel);
     
     FreezePoints();
-
-
 
     return Plugin_Stop;
 }
@@ -455,8 +496,8 @@ int ProcessSurPredictModel(float vPos[3], float vAng[3])
     {
         if (L4D2Direct_GetVSTankToSpawnThisRound(0))
         {
-            // 从 -18%到-2%
-            for (float p = L4D2Direct_GetVSTankFlowPercent(0) - 0.18; p < L4D2Direct_GetVSTankFlowPercent(0) - 0.02; p += 0.01)
+            // 从 -12% 反方向获取位置
+            for (float p = L4D2Direct_GetVSTankFlowPercent(0) -0.12; p > 0.0; p -= 0.01)
             {
                 TerrorNavArea nav = GetBossSpawnAreaForFlow(p);
                 if (nav.Valid())
