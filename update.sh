@@ -2,7 +2,7 @@
 
 echo "Get Plugin updates";
 cd /home/steam/L4D2-Competitive-Rework/;
-git pull;
+git pull --force;
 
 
 # Check the first destination directory and copy the files if it exists
