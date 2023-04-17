@@ -71,7 +71,7 @@ static const char g_sSurvivorModels[][TANK_MODEL_STRLEN] = {
     "N/A" // TankVariant slot
 };
 
-Handle t_IsTankAlive, t_ChangeToNewMap;
+Handle t_IsTankAlive;
 
 int g_iPredictModel = INVALID_ENT_REFERENCE;
 int g_iPredictSurModel = INVALID_ENT_REFERENCE;
@@ -120,10 +120,6 @@ public void OnPluginStart()
 
 public void OnRoundIsLive()
 {
-    if (g_iMapTFType != TYPE_STATIC){
-        KillTimer(t_ChangeToNewMap);
-        t_ChangeToNewMap = INVALID_HANDLE;
-    }
     CPrintToChatAll("[{green}!{default}] {olive}Tank fight 简要说明");
     CPrintToChatAll("只有克局，克死亡后进入加时阶段。如果没有人倒地回合结束！");
     CPrintToChatAll("游戏开始后，生还者会被传送到地图上发光的生还者模型");
@@ -171,7 +167,7 @@ void EndTankFightRound(){
         int survScore = L4D2Direct_GetVSCampaignScore(SurvivorTeamIndex);
         L4D2Direct_SetVSCampaignScore(SurvivorTeamIndex, survScore + healthbonus + damageBonus + pillsBonus);
         CreateTimer(3.5, AnnounceResult);
-        CheatCommand("scenario_end", "");
+        CheatCommand("scenario_end", "");   
     }else{
         CheatCommand("sm_warpend", "");
     }
@@ -202,7 +198,7 @@ public void OnUpdateBosses(int iTankFlow, int iWitchFlow)
 
 void RoundEnd_Event(Event event, const char[] name, bool dontBroadcast)
 {
-    KillTimer(t_IsTankAlive);
+    if (t_IsTankAlive != INVALID_HANDLE) KillTimer(t_IsTankAlive);
     t_IsTankAlive = INVALID_HANDLE;
 }
 
@@ -277,7 +273,7 @@ public void OnMapEnd()
 Action Timer_AnounceChangeMap(Handle Timer)
 {
     CPrintToChatAll("[{green}!{default}] Tank Fight模式不支持当前地图，在20秒后将自动换图！");
-    t_ChangeToNewMap = CreateTimer(20.0, ChangtToNewMap, _,TIMER_FLAG_NO_MAPCHANGE);
+    CreateTimer(20.0, ChangtToNewMap, _,TIMER_FLAG_NO_MAPCHANGE);
 }
 
 Action Timer_DelaySpawn(Handle timer)
