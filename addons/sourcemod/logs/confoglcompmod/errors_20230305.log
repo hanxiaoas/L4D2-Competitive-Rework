@@ -1,4 +1,0 @@
-L 03/05/2023 - 11:02:27: [CvarSettings] [dprm1_milltown_a] Could not find CVar specified (sv_pure)
-L 03/05/2023 - 11:02:28: [CvarSettings] [dprm1_milltown_a] Attempt to track ConVar sv_consistency, which is already being tracked.
-L 03/05/2023 - 11:02:28: [CvarSettings] [dprm1_milltown_a] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
-L 03/05/2023 - 11:02:28: [CvarSettings] [dprm1_milltown_a] Could not find CVar specified (confogl_boss_unprohibit)

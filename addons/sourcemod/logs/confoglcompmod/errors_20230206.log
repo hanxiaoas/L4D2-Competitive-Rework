@@ -1,9 +1,0 @@
-L 02/06/2023 - 11:38:31: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
-L 02/06/2023 - 11:41:26: [CvarSettings] [c2m1_highway] Could not find CVar specified (confogl_boss_unprohibit)
-L 02/06/2023 - 19:15:07: [CvarSettings] [dw_woods] Could not find CVar specified (confogl_boss_unprohibit)
-L 02/06/2023 - 19:17:39: [CvarSettings] [dw_woods] Could not find CVar specified (confogl_boss_unprohibit)
-L 02/06/2023 - 19:20:54: [CvarSettings] [dw_woods] Could not find CVar specified (confogl_boss_unprohibit)
-L 02/06/2023 - 19:24:29: [CvarSettings] [dw_woods] Could not find CVar specified (sv_pure)
-L 02/06/2023 - 19:24:30: [CvarSettings] [dw_woods] Attempt to track ConVar sv_consistency, which is already being tracked.
-L 02/06/2023 - 19:24:30: [CvarSettings] [dw_woods] Attempt to track ConVar sv_pure_kick_clients, which is already being tracked.
-L 02/06/2023 - 19:24:30: [CvarSettings] [dw_woods] Could not find CVar specified (confogl_boss_unprohibit)
