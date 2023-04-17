@@ -9,7 +9,7 @@
 #include <readyup>
 #include <l4d2util>
 #define REQUIRE_PLUGIN
-#include <multicolors>
+#include <colors>
 #include <witch_and_tankifier>
 #include <l4d2_hybrid_scoremod>
 #define PLUGIN_VERSION "1.0.0"
@@ -64,7 +64,7 @@ static const char g_sTankModels[][TANK_MODEL_STRLEN] = {
 };
 
 // 是懒狗，所以
-static const char g_sSurvivorModels[][TANK_MODEL_STRLEN] = {
+static const char g_sSurvivorModels_Plugin[][TANK_MODEL_STRLEN] = {
     "models/survivors/survivor_producer.mdl",//2代
     "models/survivors/survivor_manager.mdl",//1代
     "models/survivors/survivor_manager.mdl",//1代
@@ -239,7 +239,7 @@ public void OnMapStart()
 {
     for (int i = 0; i < sizeof(g_sTankModels); ++i){
         PrecacheModel(g_sTankModels[i]);
-        PrecacheModel(g_sSurvivorModels[i]);
+        PrecacheModel(g_sSurvivorModels_Plugin[i]);
     }
     if (IsStaticTankMap()){
         g_iMapTFType = TYPE_STATIC;
@@ -256,7 +256,7 @@ public void OnMapStart()
 public void OnMapEnd()
 {
     strcopy(g_sTankModels[TANK_VARIANT_SLOT], TANK_MODEL_STRLEN, "N/A");
-    strcopy(g_sSurvivorModels[TANK_VARIANT_SLOT], TANK_MODEL_STRLEN, "N/A");
+    strcopy(g_sSurvivorModels_Plugin[TANK_VARIANT_SLOT], TANK_MODEL_STRLEN, "N/A");
     g_iRound++;
 }
 
@@ -548,7 +548,7 @@ int CreateSurvivorGlowModel(const float vPos[3], const float vAng[3])
     if (entity == -1)
         return -1;
     
-    SetEntityModel(entity, g_sSurvivorModels[PickTankVariant()]);
+    SetEntityModel(entity, g_sSurvivorModels_Plugin[PickTankVariant()]);
     DispatchKeyValue(entity, "disableshadows", "1");
     DispatchKeyValue(entity, "DefaultAnim", "Idle_Calm_Pistol");
     DispatchSpawn(entity);

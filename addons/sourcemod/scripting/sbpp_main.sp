@@ -795,14 +795,14 @@ public int ReasonSelected(Handle menu, MenuAction action, int param1, int param2
 			if (StrEqual("Hacking", key))
 			{
 				DisplayMenu(HackingMenuHandle, param1, MENU_TIME_FOREVER);
-				return;
+				return 0;
 			}
 
 			else if (StrEqual("Own Reason", key)) // admin wants to use his own reason
 			{
 				g_ownReasons[param1] = true;
 				PrintToChat(param1, "%c[%cSourceBans%c]%c %t", GREEN, NAMECOLOR, GREEN, NAMECOLOR, "Chat Reason");
-				return;
+				return 0;
 			}
 
 			else if (g_BanTarget[param1] != -1 && g_BanTime[param1] != -1)
@@ -826,6 +826,7 @@ public int ReasonSelected(Handle menu, MenuAction action, int param1, int param2
 			}
 		}
 	}
+	return 0;
 }
 
 public int HackingSelected(Handle menu, MenuAction action, int param1, int param2)
@@ -874,6 +875,7 @@ public int HackingSelected(Handle menu, MenuAction action, int param1, int param
 			}
 		}
 	}
+	return 0;
 }
 
 public int MenuHandler_BanPlayerList(Handle menu, MenuAction action, int param1, int param2)
@@ -920,6 +922,7 @@ public int MenuHandler_BanPlayerList(Handle menu, MenuAction action, int param1,
 			}
 		}
 	}
+	return 0;
 }
 
 public int MenuHandler_BanTimeList(Handle menu, MenuAction action, int param1, int param2)
@@ -2318,7 +2321,7 @@ public int Native_SBReportPlayer(Handle plugin, int numParams)
 	if (numParams < 3)
 	{
 		ThrowNativeError(SP_ERROR_NATIVE, "Invalid amount of arguments. Received %d arguments", numParams);
-		return;
+		return 0;
 	}
 
 	int iReporter = GetNativeCell(1)
@@ -2366,6 +2369,7 @@ public int Native_SBReportPlayer(Handle plugin, int numParams)
 	ForwardPack.WriteString(sReason);
 
 	DB.Query(SQL_OnReportPlayer, sQuery, ForwardPack);
+	return 0;
 }
 
 public void SQL_OnReportPlayer(Database db, DBResultSet results, const char[] error, DataPack ForwardPack)
@@ -2701,7 +2705,7 @@ stock void ParseBackupConfig_Overrides()
 	CloseHandle(hKV);
 }
 
-stock AdminFlag CreateFlagLetters()
+stock AdminFlag[] CreateFlagLetters()
 {
 	AdminFlag FlagLetters[FLAG_LETTERS_SIZE];
 
@@ -2734,7 +2738,7 @@ stock AccountForLateLoading()
 {
 	char auth[30];
 
-	for (new i = 1; i <= GetMaxClients(); i++)
+	for (new i = 1; i <= MaxClients; i++)
 	{
 		if (IsClientConnected(i) && !IsFakeClient(i))
 		{

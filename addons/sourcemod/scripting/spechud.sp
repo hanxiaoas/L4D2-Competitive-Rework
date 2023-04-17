@@ -805,7 +805,7 @@ void FillScoreInfo(Panel hSpecHud)
 				int pillsBonus	= SMPlus_GetPillsBonus(),	maxPillsBonus	= SMPlus_GetMaxPillsBonus();
 				int maxDistanceBonus = L4D_GetVersusMaxCompletionScore() / 4 * iSurvivorLimit;
 
-				int totalBonus		= healthBonus		+ damageBonus		+ pillsBonus 	+ GetVersusProgressDistance(L4D2_AreTeamsFlipped());
+				int totalBonus		= healthBonus		+ damageBonus		+ pillsBonus 	+ GetVersusProgressDistance(GameRules_GetProp("m_bAreTeamsFlipped"));
 				int maxTotalBonus	= maxHealthBonus	+ maxDamageBonus	+ maxPillsBonus + maxDistanceBonus;
 				
 				DrawPanelText(hSpecHud, " ");
