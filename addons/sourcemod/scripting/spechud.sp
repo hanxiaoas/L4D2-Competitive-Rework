@@ -577,7 +577,7 @@ void FillHeaderInfo(Panel hSpecHud)
 		iTickrate = RoundToNearest(1.0 / GetTickInterval());
 	
 	static char buf[64];
-	Format(buf, sizeof(buf), "Server: %s [Slots %i/%i | %iT]", sHostname, GetRealClientCount(), iMaxPlayers, iTickrate);
+	Format(buf, sizeof(buf), "♞<[%s] - [%i/%i | %iT]>", sHostname, GetRealClientCount(), iMaxPlayers, iTickrate);
 	DrawPanelText(hSpecHud, buf);
 }
 
@@ -803,9 +803,10 @@ void FillScoreInfo(Panel hSpecHud)
 				int healthBonus	= SMPlus_GetHealthBonus(),	maxHealthBonus	= SMPlus_GetMaxHealthBonus();
 				int damageBonus	= SMPlus_GetDamageBonus(),	maxDamageBonus	= SMPlus_GetMaxDamageBonus();
 				int pillsBonus	= SMPlus_GetPillsBonus(),	maxPillsBonus	= SMPlus_GetMaxPillsBonus();
-				
-				int totalBonus		= healthBonus		+ damageBonus		+ pillsBonus;
-				int maxTotalBonus	= maxHealthBonus	+ maxDamageBonus	+ maxPillsBonus;
+				int maxDistanceBonus = L4D_GetVersusMaxCompletionScore() / 4 * iSurvivorLimit;
+
+				int totalBonus		= healthBonus		+ damageBonus		+ pillsBonus 	+ GetVersusProgressDistance(L4D2_AreTeamsFlipped());
+				int maxTotalBonus	= maxHealthBonus	+ maxDamageBonus	+ maxPillsBonus + maxDistanceBonus;
 				
 				DrawPanelText(hSpecHud, " ");
 				
@@ -815,16 +816,16 @@ void FillScoreInfo(Panel hSpecHud)
 				
 				FormatEx(	info,
 							sizeof(info),
-							"> HB: %.0f%% | DB: %.0f%% | Pills: %i / %.0f%%",
+							"♞<HB: %.0f%% | DB: %.0f%% | PB: %i>",
 							L4D2Util_IntToPercentFloat(healthBonus, maxHealthBonus),
 							L4D2Util_IntToPercentFloat(damageBonus, maxDamageBonus),
-							pillsBonus, L4D2Util_IntToPercentFloat(pillsBonus, maxPillsBonus));
+							pillsBonus);
 				DrawPanelText(hSpecHud, info);
 				
-				FormatEx(info, sizeof(info), "> Bonus: %i <%.1f%%>", totalBonus, L4D2Util_IntToPercentFloat(totalBonus, maxTotalBonus));
+				FormatEx(info, sizeof(info), "♞<Total Score: %i>", totalBonus);
 				DrawPanelText(hSpecHud, info);
 				
-				FormatEx(info, sizeof(info), "> Distance: %i", iMaxDistance);
+				FormatEx(info, sizeof(info), "♞<Point Percent:%.1f%%>", L4D2Util_IntToPercentFloat(totalBonus, maxTotalBonus));
 				//if (InSecondHalfOfRound())
 				//{
 				//	Format(info, sizeof(info), "%s | R#1: %i <%.1f%%>", info, iFirstHalfScore, L4D2Util_IntToPercentFloat(iFirstHalfScore, L4D_GetVersusMaxCompletionScore() + maxTotalBonus));

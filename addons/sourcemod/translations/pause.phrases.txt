@@ -15,8 +15,8 @@
 	}
 	"PauseCommand"
 	{
-		"#format"   "{1:N},{2:s}" // 1:client, 2:sPauseCount
-		"en"		"{olive}{1}{default} {blue}Paused{default}{2}"
+		"#format"   "{1:N}" // 1:client, 2:sPauseCount
+		"en"		"{olive}{1}{default} {blue}Paused{default}"
 	}
 	// PauseDelay_Timer
 	"PauseAction"
@@ -83,12 +83,16 @@
 	// AddPauseCount
 	"PauseLimit"
 	{
-		"en"		"You have reached your {red}pause limit{default} [{green}%d{default}]."
+		"en"		"You have reached your {red}pause limit{default}."
 	}
 	// AttemptPause
 	"PauseDeferred"
 	{
 		"en"		"{red}Pause has been delayed due to a pick-up in progress!"
+	}
+	"PauseDeferredAttacking"
+	{
+		"en"	"{red}The pause will be delayed until the infected attack ends/attack exceeds 16s!!"
 	}
 	// Pause
 	"PausePreventSpawn"
@@ -108,55 +112,55 @@
 	"PanelSlots"
 	{
 		"#format"   "{1:s},{2:d},{3:d}" // 1:info, 2:GetSeriousClientCount(), 3:FindConVar("sv_maxplayers").IntValue
-		"en"		"▸ Server: {1}\n▸ Slots: {2}/{3}"
+		"en"		"♞<[{1}] - [{2}/{3}]>"
 	}
 	"PanelTitle"
 	{
-		"en"		"▸ Ready Status"
+		"en"		"♞<--Ready Status-->"
 	}
 	"RequireAdmin"
 	{
-		"en"		"->0. Require Admin to Unpause"
+		"en"		"<!!Require Admin to Unpause!!>"
 	}
 	"SurvivorUnPaused"
 	{
-		"en"		"->1. Survivors: [√]"
+		"en"		"->1. Survivors: ★"
 	}
 	"SurvivorPaused"
 	{
-		"en"		"->1. Survivors: [X]"
+		"en"		"->1. Survivors: ☆"
 	}
 	"InfectedUnPaused"
 	{
-		"en"		"->2. Infected: [√]"
+		"en"		"->2. Infected: ★"
 	}
 	"InfectedPaused"
 	{
-		"en"		"->2. Infected: [X]"
+		"en"		"->2. Infected: ☆"
 	}
 	"InitiatorUnPaused"
 	{
-		"en"		"->0. Initiator: [√]"
+		"en"		"->0. Initiator: ★"
 	}
 	"InitiatorPaused"
 	{
-		"en"		"->0. Initiator: [X]"
+		"en"		"->0. Initiator: ☆"
 	}
 	"AutoPauseCrash"
 	{
-		"en"		"▸ Forced AutoPause -> Crash"
+		"en"		"♞<Forced AutoPause -> Crash>"
 	}
 	"ForcePauseAdmin"
 	{
-		"en"		"▸ Force Pause -> %s (Admin)"
+		"en"		"♞<Force Pause -> %s (Admin)>"
 	}
 	"InitiatorPause"
 	{
-		"en"		"▸ Initiator -> %s (%s)"
+		"en"		"♞<Initiator -> %s (%s)>"
 	}
 	"DurationPause"
 	{
-		"en"		"▸ Duration: %02d:%02d"
+		"en"		"♞<Duration: %02d:%02d>"
 	}
 	// InitiateLiveCountdown
 	"CountdownCancelNotify"

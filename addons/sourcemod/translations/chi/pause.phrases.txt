@@ -15,8 +15,8 @@
 	}
 	"PauseCommand"
 	{
-		"#format"   "{1:N},{2:s}" // 1:client, 2:sPauseCount
-		"chi"		"{olive}{1}{default} {blue}暂停游戏{default}{2}"
+		"#format"   "{1:N}" // 1:client, 2:sPauseCount
+		"chi"		"{olive}{1}{default} {blue}暂停游戏{default}"
 	}
 	// PauseDelay_Timer
 	"PauseAction"
@@ -30,11 +30,11 @@
 	// ForcePause_Cmd
 	"Crashed"
 	{
-		"chi"	"{olive}游戏 {default} 因为一个玩家客户端{blue}崩溃{default} 所以被 {green}强行暂停."
+		"chi"	"{olive}游戏 {default}因为一个玩家客户端{blue}崩溃{default}所以被{green}强行暂停."
 	}
 	"ForcePause"
 	{
-		"chi"	"{blue}管理员 {default}({olive}%N{default})  {green}强行暂停游戏 {default}. "
+		"chi"	"{blue}管理员{default}({olive}%N{default}) {green}强行暂停游戏 {default}. "
 	}
 	// Unpause_Cmd
 	"UnpauseSurvivors"
@@ -83,7 +83,7 @@
 	// AddPauseCount
 	"PauseLimit"
 	{
-		"chi"		"你已经达到你的 {red}暂停上限{default} [{green}%d{default}]."
+		"chi"		"你已经达到你的 {red}暂停上限{default}."
 	}
 	// AttemptPause
 	"PauseDeferred"
@@ -128,7 +128,7 @@
 	}
 	"SurvivorPaused"
 	{
-		"chi"	"->1. 生还者: ★"
+		"chi"	"->1. 生还者: ☆"
 	}
 	"InfectedUnPaused"
 	{
