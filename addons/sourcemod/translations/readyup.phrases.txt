@@ -107,8 +107,8 @@
 	// g_sDisruptReason[]
 	"Player marked unready"
 	{
-		"#format"	"{1:N}{2:s}"
-		"en"		"{green}Countdown Cancelled!{default} ({teamcolor}{1}{green} marked unready{default}){2}"
+		"#format"	"{1:N}"
+		"en"		"{green}Countdown Cancelled!{default} ({teamcolor}{1}{green} marked unready{default})"
 	}
 	"Player switched team"
 	{

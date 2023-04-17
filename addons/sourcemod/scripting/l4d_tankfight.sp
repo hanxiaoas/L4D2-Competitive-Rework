@@ -71,8 +71,6 @@ static const char g_sSurvivorModels[][TANK_MODEL_STRLEN] = {
     "N/A" // TankVariant slot
 };
 
-Handle t_IsTankAlive;
-
 int g_iPredictModel = INVALID_ENT_REFERENCE;
 int g_iPredictSurModel = INVALID_ENT_REFERENCE;
 int g_iRound = 0;
@@ -127,23 +125,13 @@ public void OnRoundIsLive()
 
 Action IsTankFightEnd(Handle timer)
 {
-    if (IsTankInGame()) return Plugin_Continue;
+    if (IsTankInPlay()) return Plugin_Continue;
     if (!IsCanEndRound()) return Plugin_Continue;
     EndTankFightRound();
     
     return Plugin_Stop;
 }
 
-bool IsTankInGame()
-{
-    for (int client = 1; client <= MaxClients; client++) {
-        if (IS_VALID_INFECTED(client) && IsPlayerAlive(client) && GetEntProp(client, Prop_Send, "m_zombieClass") == ZC_TANK) {
-            return true;
-        }
-    }
-
-    return false;
-}
 
 bool IsCanEndRound(){
     for (int i = 1; i <= MaxClients; i++){
@@ -158,6 +146,7 @@ bool IsCanEndRound(){
 int healthbonus, damageBonus, pillsBonus;
 // 传送生还者到安全屋并结束本回合
 void EndTankFightRound(){
+    if (!IsTankInPlay()) return;
     if (g_iMapTFType == TYPE_FINISH){
         healthbonus = SMPlus_GetHealthBonus();
         damageBonus	= SMPlus_GetDamageBonus();
@@ -198,8 +187,8 @@ public void OnUpdateBosses(int iTankFlow, int iWitchFlow)
 
 void RoundEnd_Event(Event event, const char[] name, bool dontBroadcast)
 {
-    if (t_IsTankAlive != INVALID_HANDLE) KillTimer(t_IsTankAlive);
-    t_IsTankAlive = INVALID_HANDLE;
+    //if (t_IsTankAlive != INVALID_HANDLE) KillTimer(t_IsTankAlive);
+    //t_IsTankAlive = INVALID_HANDLE;
 }
 
 void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
@@ -267,6 +256,7 @@ public void OnMapStart()
 public void OnMapEnd()
 {
     strcopy(g_sTankModels[TANK_VARIANT_SLOT], TANK_MODEL_STRLEN, "N/A");
+    strcopy(g_sSurvivorModels[TANK_VARIANT_SLOT], TANK_MODEL_STRLEN, "N/A");
     g_iRound++;
 }
 
@@ -274,12 +264,14 @@ Action Timer_AnounceChangeMap(Handle Timer)
 {
     CPrintToChatAll("[{green}!{default}] Tank Fight模式不支持当前地图，在20秒后将自动换图！");
     CreateTimer(20.0, ChangtToNewMap, _,TIMER_FLAG_NO_MAPCHANGE);
+    return Plugin_Stop;
 }
 
 Action Timer_DelaySpawn(Handle timer)
 {
     ConVar spawn = FindConVar("director_no_specials");
     spawn.IntValue = 0;
+    return Plugin_Stop;
 }
 
 bool IsMissionFinalMap()
@@ -448,7 +440,7 @@ void Event_TankSpawn(Event event, const char[] name, bool dontBroadcast)
     RemoveEntity(g_iPredictModel);
     g_iPredictModel = INVALID_ENT_REFERENCE;
     
-    t_IsTankAlive = CreateTimer(0.3, IsTankFightEnd, _, TIMER_FLAG_NO_MAPCHANGE|TIMER_REPEAT);
+    CreateTimer(0.3, IsTankFightEnd, _, TIMER_FLAG_NO_MAPCHANGE|TIMER_REPEAT);
 }
 
 //=========================================================================================================
