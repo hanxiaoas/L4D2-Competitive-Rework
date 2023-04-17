@@ -38,7 +38,7 @@ public Action FakeLagCmd(int client, int args) {
     return Plugin_Handled;
   }
 
-  int lagAmount = GetCmdArgInt(2);
+  int lagAmount = GetCmdArgInt_Plugin(2);
   CFakeLag_SetPlayerLatency(target, lagAmount * 1.0);
   ShowActivity2(client, "[SM]", "Set fake lag of %dms on player %N", lagAmount, target);
   return Plugin_Handled;
@@ -57,7 +57,7 @@ public Action PrintLagCmd(int client, int args) {
 	return Plugin_Handled;
 }
 
-stock int GetCmdArgInt(int argnum) {
+stock int GetCmdArgInt_Plugin(int argnum) {
     char str[12];
     GetCmdArg(argnum, str, sizeof(str));
 

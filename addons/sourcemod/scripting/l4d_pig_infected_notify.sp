@@ -112,7 +112,7 @@ public Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast)
 	if((attacker == 0 || attacker == victim)
 	&& victim != 0 && IsClientConnected(victim) && IsClientInGame(victim) && GetClientTeam(victim) == 3)//特感自殺
 	{
-		decl String:kill_weapon[15];
+		decl String:kill_weapon[20];
 		if(StrEqual(weapon,"entityflame")||StrEqual(weapon,"env_fire"))//地圖的自然火
 			kill_weapon = "玩火自焚";
 		else if(StrEqual(weapon,"inferno"))//玩家丟的火
@@ -186,7 +186,7 @@ public Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast)
 			}
 			else if (PlayerIsTank(attacker))//Tank kill infected
 			{
-				decl String:Tank_weapon[15];
+				decl String:Tank_weapon[22];
 				//Tank weapon
 				if(StrEqual(weapon,"tank_claw"))
 					Tank_weapon = "拍";
