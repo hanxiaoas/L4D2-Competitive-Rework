@@ -61,7 +61,8 @@ ConVar
 // Pause Handle
 Handle
     readyCountdownTimer,
-    deferredPauseTimer;
+    deferredPauseTimer,
+    attackingPauseTimer;
 int
     readyDelay,
     pauseDelay;
@@ -204,6 +205,7 @@ public void RoundEnd_Event(Event event, const char[] name, bool dontBroadcast)
     {
         delete deferredPauseTimer;
     }
+    if (attackingPauseTimer != null) delete deferredPauseTimer;
     RoundEnd = true;
     Unpause(false);
 }
@@ -433,21 +435,65 @@ bool AddPauseCount(int client)
 
     return true;
 }
-
+int maxPauseTime;
 void AttemptPause()
 {
-    if (deferredPauseTimer == null)
-    {
-        if (!IsSurvivorReviving())
-        {
-            Pause();
-        }
-        else
-        {
-            CPrintToChatAll("%t %t", "Tag", "PauseDeferred");
-            deferredPauseTimer = CreateTimer(0.1, DeferredPause_Timer, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
-        }
-    }
+	if (deferredPauseTimer == null)
+	{
+		if (IsSurvivorReviving())
+		{
+			CPrintToChatAll("%t %t", "Tag", "PauseDeferred");
+			deferredPauseTimer = CreateTimer(0.1, DeferredPause_Timer, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+			
+		}
+		else if (IsAnyInfectedSpawned())
+		{
+			maxPauseTime = 160;
+			CPrintToChatAll("%t %t", "Tag", "PauseDeferredAttacking");
+			attackingPauseTimer = CreateTimer(0.1, Timer_InfAttacking, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+		}
+		else
+		{
+			Pause();
+		}
+	}
+}
+public Action Timer_InfAttacking(Handle timer)
+{
+	if(IsAnyInfectedSpawned() && maxPauseTime>0)
+	{
+		maxPauseTime--;
+		return Plugin_Continue;
+	}
+	else
+	{
+		attackingPauseTimer = null;
+		Pause();
+		return Plugin_Stop;
+	}
+	
+}
+public bool IsAnyInfectedSpawned()
+{
+	for(int i = 1; i <= MaxClients; i++)
+	{
+		if(IsInfected(i))
+		{
+			if(!IsInfectedGhost(i)) //特感为复活状态
+			{
+				if (!IsPlayerAlive(i))
+				{
+					continue;
+				}
+				if (GetInfectedClass(i) == L4D2Infected_Tank) //不是tank
+				{
+					continue;
+				}
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 public Action DeferredPause_Timer(Handle timer)
