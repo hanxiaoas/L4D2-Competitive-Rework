@@ -144,12 +144,12 @@ public OnEntityCreated(Entity, const String:Classname[])
             case 1:
             {
                 TE_SetupBeamFollow(Entity, Sprite1, 0, Float:2.0, g_fwidth, g_fwidth, 5, vomiteColor);
-                TE_SendToInf();   		
+                TE_SendToAll();   		
             }		
             case 2:
             {
                 TE_SetupBeamFollow(Entity, Sprite2, 0, Float:2.0, g_fwidth, g_fwidth, 5, vomiteColor);
-                TE_SendToInf();   								
+                TE_SendToAll();   								
             }
         }	
     }    
