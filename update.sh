@@ -4,7 +4,7 @@ echo "Get Plugin updates";
 cd /home/steam/L4D2-Competitive-Rework/;
 git reset --hard
 git pull;
-
+git status;
 
 directories=("/home/steam/Steam/steamapps/common/l4d2versus/left4dead2" "/home/steam/Steam/steamapps/common/l4d2/left4dead2")
 
