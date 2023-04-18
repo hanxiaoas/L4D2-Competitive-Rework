@@ -11,7 +11,7 @@ static int
 
 static const char 
 	hintPhrase[2][] = {"HintUnready", "HintReady"},
-	readySymbol[2][] = {"☆", "★"},
+	readySymbol[2][] = {"☐", "☑"},
 	teamReadySymbol[2][] = {" [X]", " [√]"};
 
 void InitPanel()
@@ -19,16 +19,15 @@ void InitPanel()
 	if (cmdFooter == null)
 	{
 		cmdFooter = new Footer();
-		cmdFooter.Add("(●'◡'●)  !strike");
-		cmdFooter.Add("(●'◡'●)  !slots #");
-		cmdFooter.Add("(●'◡'●)  !voteboss <tank> <witch>");
-		cmdFooter.Add("(●'◡'●)  !match / !rmatch");
-		cmdFooter.Add("(●'◡'●)  !return");
-		cmdFooter.Add("(●'◡'●)  !setscores <survs> <inf>");
-		cmdFooter.Add("(●'◡'●) 	!dance ");
-		cmdFooter.Add("(●'◡'●)  !secondary");
-		cmdFooter.Add("(●'◡'●)  !forcestart / !fs");
-		cmdFooter.Add("(●'◡'●)  Good luck & Have Fun :D");
+		cmdFooter.Add("->1. !ready|!r / !unready|!nr");
+		cmdFooter.Add("->2. !slots #");
+		cmdFooter.Add("->3. !voteboss <tank> <witch>");
+		cmdFooter.Add("->4. !match / !rmatch");
+		cmdFooter.Add("->5. !show / !hide");
+		cmdFooter.Add("->6. !setscores <survs> <inf>");
+		cmdFooter.Add("->7. !lerps");
+		cmdFooter.Add("->8. !secondary");
+		cmdFooter.Add("->9. !forcestart / !fs");
 	}
 	
 	curCmd = 0;
@@ -86,15 +85,15 @@ void UpdatePanel()
 	g_cvServerNamer.GetString(ServerName, sizeof(ServerName));
 	
 	l4d_ready_cfg_name.GetString(cfgName, sizeof(cfgName));
-	Format(ServerBuffer, sizeof(ServerBuffer), "♞<[%s] - [%d/%d]@%s>", ServerName, GetSeriousClientCount(), FindConVar("sv_maxplayers").IntValue, cfgName);
+	Format(ServerBuffer, sizeof(ServerBuffer), "▸ Server: %s \n▸ Slots: %d/%d\n▸ Config: %s", ServerName, GetSeriousClientCount(), FindConVar("sv_maxplayers").IntValue, cfgName);
 	menuPanel.DrawText(ServerBuffer);
 	
-	FormatTime(ServerBuffer, sizeof(ServerBuffer), "♞<%m/%d/%Y - %I:%M%p");
-	Format(ServerBuffer, sizeof(ServerBuffer), "%s (%02d:%02d)>", ServerBuffer, iPassTime / 60, iPassTime % 60);
+	FormatTime(ServerBuffer, sizeof(ServerBuffer), "▸ %m/%d/%Y - %I:%M%p");
+	Format(ServerBuffer, sizeof(ServerBuffer), "%s (%02d:%02d)", ServerBuffer, iPassTime / 60, iPassTime % 60);
 	menuPanel.DrawText(ServerBuffer);
 	
 	menuPanel.DrawText(" ");
-	menuPanel.DrawText("♞< Commands >");
+	menuPanel.DrawText("▸ Commands:");
 	menuPanel.DrawText(FooterGet(cmdFooter, curCmd));
 	menuPanel.DrawText(" ");
 	
@@ -158,7 +157,7 @@ void UpdatePanel()
 	{
 		survivorBuffer[bufLen] = '\0';
 		ReplaceString(survivorBuffer, sizeof(survivorBuffer), "#", "_");
-		Format(nameBuf, sizeof(nameBuf), "->%d. Surs♥%s - %d", ++textCount, isTeamReadyMode ? teamReadySymbol[survivorReady] : "", L4D2Direct_GetVSCampaignScore(GameRules_GetProp("m_bAreTeamsFlipped")));
+		Format(nameBuf, sizeof(nameBuf), "->%d. Survivors%s", ++textCount, isTeamReadyMode ? teamReadySymbol[survivorReady] : "");
 		menuPanel.DrawText(nameBuf);
 		menuPanel.DrawText(survivorBuffer);
 	}
@@ -168,7 +167,7 @@ void UpdatePanel()
 	{
 		infectedBuffer[bufLen] = '\0';
 		ReplaceString(infectedBuffer, sizeof(infectedBuffer), "#", "_");
-		Format(nameBuf, sizeof(nameBuf), "->%d. Infs♥%s - %d", ++textCount, isTeamReadyMode ? teamReadySymbol[infectedReady] : "", L4D2Direct_GetVSCampaignScore(!GameRules_GetProp("m_bAreTeamsFlipped")));
+		Format(nameBuf, sizeof(nameBuf), "->%d. Infected%s", ++textCount, isTeamReadyMode ? teamReadySymbol[infectedReady] : "");
 		menuPanel.DrawText(nameBuf);
 		menuPanel.DrawText(infectedBuffer);
 	}
@@ -181,7 +180,7 @@ void UpdatePanel()
 		if (bufLen != 0)
 		{
 			casterBuffer[bufLen] = '\0';
-			Format(nameBuf, sizeof(nameBuf), "->%d. Caster%s♥", ++textCount, casterCount > 1 ? "s" : "");
+			Format(nameBuf, sizeof(nameBuf), "->%d. Caster%s", ++textCount, casterCount > 1 ? "s" : "");
 			menuPanel.DrawText(nameBuf);
 			ReplaceString(casterBuffer, sizeof(casterBuffer), "#", "_", true);
 			menuPanel.DrawText(casterBuffer);
@@ -192,11 +191,11 @@ void UpdatePanel()
 	if (bufLen != 0)
 	{
 		specBuffer[bufLen] = '\0';
-		Format(nameBuf, sizeof(nameBuf), "->%d. Spec%s♥", ++textCount, specCount > 1 ? "s" : "");
+		Format(nameBuf, sizeof(nameBuf), "->%d. Spectator%s", ++textCount, specCount > 1 ? "s" : "");
 		menuPanel.DrawText(nameBuf);
 		ReplaceString(specBuffer, sizeof(specBuffer), "#", "_");
 		if (playerCount > l4d_ready_max_players.IntValue && specCount - casterCount > 1)
-			FormatEx(specBuffer, sizeof(specBuffer), "♥Many♥ - %d", specCount - casterCount);
+			FormatEx(specBuffer, sizeof(specBuffer), "**Many** (%d)", specCount - casterCount);
 		menuPanel.DrawText(specBuffer);
 	}
 

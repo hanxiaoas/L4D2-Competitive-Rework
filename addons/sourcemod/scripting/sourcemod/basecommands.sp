@@ -232,7 +232,7 @@ int CustomFlagsToString(char[] buffer, int maxlength, int flags)
 	return total;
 }
 
-void FlagsToString(char[] buffer, int maxlength, inserver_commandst flags)
+void FlagsToString(char[] buffer, int maxlength, int flags)
 {
 	char joins[FLAG_STRINGS+1][32];
 	int total;
