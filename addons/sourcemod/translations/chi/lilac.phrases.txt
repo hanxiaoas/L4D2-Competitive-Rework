@@ -66,4 +66,9 @@
 	{
 		"chi"		"检测到刷屏"
 	}
+	"admin_chat_warning_generic"
+	{
+		"#format"	"{1:s},{2:s},{3:d}"
+		"en"		"{1} 疑似使用 '{2}' (检测: {3})"
+	}
 }
