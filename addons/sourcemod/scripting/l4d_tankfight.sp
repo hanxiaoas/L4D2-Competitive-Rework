@@ -52,9 +52,9 @@ enum /*strMapType*/
 
 enum
 {
-    TYPE_NORMAL,
-    TYPE_FINISH,
-    TYPE_STATIC
+    TYPE_NORMAL = 10,
+    TYPE_FINISH = 11,
+    TYPE_STATIC = 12
 };
 static const char g_sTankModels[][TANK_MODEL_STRLEN] = {
     "models/infected/hulk.mdl",
@@ -119,12 +119,13 @@ public void OnPluginStart()
 public void OnRoundIsLive()
 {
     CPrintToChatAll("[{green}!{default}] {olive}Tank fight 简要说明");
-    CPrintToChatAll("只有克局，克死亡后进入加时阶段。如果没有人倒地回合结束！");
+    CPrintToChatAll("只有克局，克死亡后进入加时阶段。如果所有人都被扶起来回合结束！");
     CPrintToChatAll("游戏开始后，生还者会被传送到地图上发光的生还者模型");
 }
 
 public Action IsTankFightEnd(Handle timer)
-{
+{  
+    PrintToConsoleAll("IsTankFightEnd running");
     if (IsTankInGame()) return Plugin_Continue;
     if (!IsCanEndRound()) return Plugin_Continue;
     EndTankFightRound();
@@ -155,6 +156,7 @@ bool IsCanEndRound(){
 int healthbonus, damageBonus, pillsBonus;
 // 传送生还者到安全屋并结束本回合
 void EndTankFightRound(){
+    PrintToConsoleAll("EndTankFightRound - %i", g_iMapTFType);
     if (g_iMapTFType == TYPE_FINISH){
         healthbonus = SMPlus_GetHealthBonus();
         damageBonus	= SMPlus_GetDamageBonus();
@@ -169,6 +171,7 @@ void EndTankFightRound(){
         CheatCommand("sm_warpend", "");
     }
 }
+
 
 Action AnnounceResult(Handle timer)
 {
@@ -620,7 +623,7 @@ int PickTankVariant()
 void CheatCommand(const char[] sCmd, const char[] sArgs = "")
 {
     for (int i = 1; i< MaxClients + 1; i++){
-        if (IsClientInGame(i)){
+        if (IsClientInGame(i) && !IsClientSourceTV(i)){
             int admindata = GetUserFlagBits(i);
             SetUserFlagBits(i, ADMFLAG_ROOT);
             int iFlags = GetCommandFlags(sCmd);
