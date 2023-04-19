@@ -2,7 +2,7 @@
 
 echo "Get Plugin updates";
 cd /home/steam/L4D2-Competitive-Rework/;
-git reset --hard
+git reset --hard;
 git pull;
 git status;
 
@@ -10,7 +10,8 @@ directories=("/home/steam/Steam/steamapps/common/l4d2versus/left4dead2" "/home/s
 
 for dir in "${directories[@]}"; do
     if [ -d "$dir" ]; then
-        find "$dir/addons/sourcemod/" ! -path "$dir/addons/sourcemod/logs*" ! -path "$dir/addons/sourcemod/configs/sourcebans/sourcebans.cfg" ! -path "$dir/addons/sourcemod/configs/database.cfg" -delete
+        find "$dir/addons/sourcemod/" ! -path "$dir/addons/sourcemod/logs*" ! -path "$dir/addons/sourcemod/configs/sourcebans/sourcebans.cfg" ! -path "$dir/addons/sourcemod/configs/databases.cfg" -type f -delete        
+
         rm -rf "$dir/addons/metamod/"*
         rm -rf "$dir/addons/l4dtoolz/"*
         rm -rf "$dir/addons/stripper/"*
