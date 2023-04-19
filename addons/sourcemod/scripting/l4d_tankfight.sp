@@ -123,15 +123,24 @@ public void OnRoundIsLive()
     CPrintToChatAll("游戏开始后，生还者会被传送到地图上发光的生还者模型");
 }
 
-Action IsTankFightEnd(Handle timer)
+public Action IsTankFightEnd(Handle timer)
 {
-    if (IsTankInPlay()) return Plugin_Continue;
+    if (IsTankInGame()) return Plugin_Continue;
     if (!IsCanEndRound()) return Plugin_Continue;
     EndTankFightRound();
     
     return Plugin_Stop;
 }
 
+bool IsTankInGame()
+{
+    for (int client = 1; client <= MaxClients; client++) {
+        if (IS_VALID_INFECTED(client) && IsPlayerAlive(client) && GetEntProp(client, Prop_Send, "m_zombieClass") == ZC_TANK) {
+            return true;
+        }
+    }
+    return false;
+}
 
 bool IsCanEndRound(){
     for (int i = 1; i <= MaxClients; i++){
@@ -146,7 +155,6 @@ bool IsCanEndRound(){
 int healthbonus, damageBonus, pillsBonus;
 // 传送生还者到安全屋并结束本回合
 void EndTankFightRound(){
-    if (!IsTankInPlay()) return;
     if (g_iMapTFType == TYPE_FINISH){
         healthbonus = SMPlus_GetHealthBonus();
         damageBonus	= SMPlus_GetDamageBonus();
