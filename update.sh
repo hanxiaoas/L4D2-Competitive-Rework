@@ -25,14 +25,15 @@ for dir in "${directories[@]}"; do
         #rm -rf "$dir/cfg/mixmap/"*
         #rm -rf "$dir/cfg/sourcemod/"*
         #rm -rf "$dir/cfg/stripper/"*
-
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/configs/* "$dir/addons/sourcemod/configs/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/data/* "$dir/addons/sourcemod/data/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/gamedata/* "$dir/addons/sourcemod/gamedata/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/plugins/* "$dir/addons/sourcemod/plugins/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/translations/* "$dir/addons/sourcemod/translations/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/scripts/* "$dir/scripts/" --mode=777;
-        \cp -r /home/steam/L4D2-Competitive-Rework/cfg/* "$dir/cfg/" --mode=777;
+        
+        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/configs/* "$dir/addons/sourcemod/configs/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/data/* "$dir/addons/sourcemod/data/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/gamedata/* "$dir/addons/sourcemod/gamedata/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/plugins/* "$dir/addons/sourcemod/plugins/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/translations/* "$dir/addons/sourcemod/translations/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/scripts/* "$dir/scripts/";
+        \cp -r /home/steam/L4D2-Competitive-Rework/cfg/* "$dir/cfg/";
+        chmod 777 "$dir/"
         echo "Updated | $dir"
     else
         echo "Unexist | $dir "

@@ -28,7 +28,8 @@ for dir in "${directories[@]}"; do
         rm -f "$dir/l4dtoolz.vdf"
         rm -f "$dir/metamod.vdf"
 
-        \cp -rp /home/steam/L4D2-Competitive-Rework/* "$dir/" --mode=777;
+        \cp -rp /home/steam/L4D2-Competitive-Rework/* "$dir/";
+        chmod 777 "$dir/"
 
         echo "Updated | $dir"
     else
