@@ -41,28 +41,32 @@ public Action CMD_ManuallyRecord(int iClient, int iArgs)
 
 	if(iArgs != 1) 
 	{
-    	ReplyToCommand(iClient, "Usage: sm_rec <target>");
-    	return Plugin_Handled;
-  	}
+		ReplyToCommand(iClient, "使用方式: sm_rec <target>");
+		ReplyToCommand(iClient, "如果无法指代目标，指定任意一人即可开始录制。");
+		return Plugin_Handled;
+	}
 	char targetStr[256];
 	GetCmdArg(1, targetStr, sizeof(targetStr));
 	int target =FindTarget(iClient, targetStr, true);
 	if(target < 0) {
-    	ReplyToCommand(iClient, "无法找到目标 \"%s\"", targetStr);
-    	return Plugin_Handled;
-  	}
+		ReplyToCommand(iClient, "无法找到目标 \"%s\"", targetStr);
+		ReplyToCommand(iClient, "如果无法指代目标，指定任意一人即可开始录制。");
+		return Plugin_Handled;
+	}
 	if(!IsClientInGame(target)) {
-    	ReplyToCommand(iClient, "玩家 %N 不在游戏中.", target);
-    	return Plugin_Handled;
-  	}
-  	if (IsFakeClient(target)) {
-  	  	ReplyToCommand(iClient, "玩家 %N 是bot.", target);
-  	  	return Plugin_Handled;
-  	}
-	CPrintToChat(iClient, "[{green}!{default}] 已将 %N 添加进服务端录制demo名单!", iClient);
+		ReplyToCommand(iClient, "玩家 %N 不在游戏中.", target);
+		ReplyToCommand(iClient, "如果无法指代目标，指定任意一人即可开始录制。");
+		return Plugin_Handled;
+	}
+	if (IsFakeClient(target)) {
+		ReplyToCommand(iClient, "玩家 %N 是bot.", target);
+		ReplyToCommand(iClient, "如果无法指代目标，指定任意一人即可开始录制。");
+		return Plugin_Handled;
+	}
+	CPrintToChat(iClient, "[{green}!{default}] 已将 %N 添加进服务端录制demo名单!", target);
 	CPrintToChat(iClient, "[{green}!{default}] 该消息仅对你可见!");
 	CPrintToChat(iClient, "[{green}!{default}] 请结合指令{olive}!report{default}进行举报并详细说明理由");
-	Format(line, sizeof(line), "//Added by Command (%N Request)//", iClient);
+	Format(line, sizeof(line), "//Added by Command (%N Request to record %N)//", iClient, target);
 	log_line(0);
 	update_recording_list(target, true);
 	return Plugin_Handled;
