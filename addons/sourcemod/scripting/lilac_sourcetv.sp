@@ -1,5 +1,5 @@
 #include <sourcemod>
-
+#include <colors>
 // We only care about these detections,
 // 	since they don't cause instant bans.
 #define CHEAT_AIMBOT 	5
@@ -36,9 +36,42 @@ public Plugin:myinfo = {
 	url = ""
 };
 
+public Action CMD_ManuallyRecord(int iClient, int iArgs)
+{
+
+	if(iArgs != 1) 
+	{
+    	ReplyToCommand(iClient, "Usage: sm_rec <target>");
+    	return Plugin_Handled;
+  	}
+	char targetStr[256];
+	GetCmdArg(1, targetStr, sizeof(targetStr));
+	int target =FindTarget(iClient, targetStr, true);
+	if(target < 0) {
+    	ReplyToCommand(iClient, "无法找到目标 \"%s\"", targetStr);
+    	return Plugin_Handled;
+  	}
+	if(!IsClientInGame(target)) {
+    	ReplyToCommand(iClient, "玩家 %N 不在游戏中.", target);
+    	return Plugin_Handled;
+  	}
+  	if (IsFakeClient(target)) {
+  	  	ReplyToCommand(iClient, "玩家 %N 是bot.", target);
+  	  	return Plugin_Handled;
+  	}
+	CPrintToChat(iClient, "[{green}!{default}] 已将 %N 添加进服务端录制demo名单!", iClient);
+	CPrintToChat(iClient, "[{green}!{default}] 该消息仅对你可见!");
+	CPrintToChat(iClient, "[{green}!{default}] 请结合指令{olive}!report{default}进行举报并详细说明理由");
+	Format(line, sizeof(line), "//Added by Command (%N Request)//", iClient);
+	log_line(0);
+	update_recording_list(target, true);
+	return Plugin_Handled;
+}
 
 public void OnPluginStart()
 {
+	RegConsoleCmd("sm_rec", CMD_ManuallyRecord, "手动录制demo");
+
 	Handle tcvar;
 
 	cvar[CVAR_ENABLE] = CreateConVar("lilac_stv_enable", "1",
