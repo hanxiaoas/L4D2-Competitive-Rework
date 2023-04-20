@@ -1,4 +1,5 @@
 #include <sourcemod>
+#include <sdktools>
 #include <colors>
 // We only care about these detections,
 // 	since they don't cause instant bans.
@@ -357,7 +358,7 @@ int get_sourcetv_bot()
 public Action timer_restart_map(Handle timer)
 {
 	char mapname[256];
-
+	SetClientName(get_sourcetv_bot(), "[LAC]Recorder");
 	if (!icvar[CVAR_ENABLE] || !icvar[CVAR_STV_JOIN])
 		return Plugin_Continue;
 
