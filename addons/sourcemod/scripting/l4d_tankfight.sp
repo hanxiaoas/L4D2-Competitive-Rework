@@ -125,7 +125,6 @@ public void OnRoundIsLive()
 
 public Action IsTankFightEnd(Handle timer)
 {  
-    PrintToConsoleAll("IsTankFightEnd running");
     if (IsTankInGame()) return Plugin_Continue;
     if (!IsCanEndRound()) return Plugin_Continue;
     EndTankFightRound();
@@ -156,7 +155,6 @@ bool IsCanEndRound(){
 int healthbonus, damageBonus, pillsBonus;
 // 传送生还者到安全屋并结束本回合
 void EndTankFightRound(){
-    PrintToConsoleAll("EndTankFightRound - %i", g_iMapTFType);
     if (g_iMapTFType == TYPE_FINISH){
         healthbonus = SMPlus_GetHealthBonus();
         damageBonus	= SMPlus_GetDamageBonus();
