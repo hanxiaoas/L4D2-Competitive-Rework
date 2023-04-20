@@ -621,7 +621,7 @@ int PickTankVariant()
 void CheatCommand(const char[] sCmd, const char[] sArgs = "")
 {
     for (int i = 1; i< MaxClients + 1; i++){
-        if (IsClientInGame(i) && !IsClientSourceTV(i)){
+        if (IsClientInGame(i) && !IsFakeClient(i)){
             int admindata = GetUserFlagBits(i);
             SetUserFlagBits(i, ADMFLAG_ROOT);
             int iFlags = GetCommandFlags(sCmd);
