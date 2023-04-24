@@ -151,6 +151,7 @@ public void OnMapStart()
 
 	// Not needed, but just in case.
 	lilac_stop_recording();
+	CreateTimer(5.0, timer_rename);
 }
 
 public void OnMapEnd()
@@ -357,10 +358,14 @@ int get_sourcetv_bot()
 	return -1;
 }
 
-public Action timer_restart_map(Handle timer)
+public Action timer_rename(Handle timer)
 {
 	SetClientName(get_sourcetv_bot(), "[LAC]Recorder");
+	return Plugin_Continue;
+}
 
+public Action timer_restart_map(Handle timer)
+{
 	char mapname[256];
 	if (!icvar[CVAR_ENABLE] || !icvar[CVAR_STV_JOIN])
 		return Plugin_Continue;
