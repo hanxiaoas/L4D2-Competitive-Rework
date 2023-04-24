@@ -73,6 +73,8 @@ public Action CMD_ManuallyRecord(int iClient, int iArgs)
 	return Plugin_Handled;
 }
 
+
+
 public void OnPluginStart()
 {
 	RegConsoleCmd("sm_rec", CMD_ManuallyRecord, "手动录制demo");
@@ -149,8 +151,6 @@ public void OnMapStart()
 
 	// Not needed, but just in case.
 	lilac_stop_recording();
-	
-	SetClientName(get_sourcetv_bot(), "[LAC]Recorder");
 }
 
 public void OnMapEnd()
@@ -359,6 +359,8 @@ int get_sourcetv_bot()
 
 public Action timer_restart_map(Handle timer)
 {
+	SetClientName(get_sourcetv_bot(), "[LAC]Recorder");
+
 	char mapname[256];
 	if (!icvar[CVAR_ENABLE] || !icvar[CVAR_STV_JOIN])
 		return Plugin_Continue;
