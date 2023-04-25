@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Get Plugin updates";
-cd /home/steam/L4D2-Competitive-Rework/;
+cd /root/L4D2-Competitive-Rework/;
 git reset --hard;
 git pull;
 git status;
