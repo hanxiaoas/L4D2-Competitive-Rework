@@ -1,15 +1,23 @@
 "hostname"
-{	
+{
 	"27015"
 	{
-		"hostname"		"funny"
+		"hostname"		"喵1"
 	}
-	"10721"
+	"27016"
 	{
-		"hostname"		"[zonemod]萌新喵喵屋"
+		"hostname"		"喵1"
 	}
-	"20721"
+	"53333"
 	{
-		"hostname"		"[zm TankFight]萌新不喵呜"
+		"hostname"		"小熊的求生之路内战服"
+	}
+	"56666"
+	{
+		"hostname"		"[zonemod]小熊的萌新汪汪屋#1"
+	}
+	"58888"
+	{
+		"hostname"		"[zonemod]小熊的萌新汪汪屋#2"
 	}
 }
