@@ -6,7 +6,7 @@ git reset --hard;
 git pull;
 git status;
 
-directories=("/root/Steam/steamapps/common/l4d2_zonemod_hunye")
+directories=("/root/Steam/steamapps/common/l4d2_zonemod_hunye/left4dead2")
 
 for dir in "${directories[@]}"; do
     if [ -d "$dir" ]; then
