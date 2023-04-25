@@ -41,3 +41,7 @@ for dir in "${directories[@]}"; do
 done
 
 echo "File Copy Success";
+
+echo "==================当前commit=================="
+git log -1
+echo "================== 运行结束 =================="

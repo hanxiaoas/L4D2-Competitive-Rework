@@ -37,5 +37,9 @@ for dir in "${directories[@]}"; do
         echo "Unexist | $dir "
     fi
 done
-
 echo "File Copy Success";
+
+echo "==================当前commit=================="
+git log -1
+echo "================== 运行结束 =================="
+
