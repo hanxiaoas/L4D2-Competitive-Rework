@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Get Plugin updates";
-cd /home/steam/L4D2-Competitive-Rework/;
+cd /root/L4D2-Competitive-Rework/;
 git reset --hard
 git pull;
 git status;
@@ -26,13 +26,13 @@ for dir in "${directories[@]}"; do
         #rm -rf "$dir/cfg/sourcemod/"*
         #rm -rf "$dir/cfg/stripper/"*
         
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/configs/* "$dir/addons/sourcemod/configs/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/data/* "$dir/addons/sourcemod/data/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/gamedata/* "$dir/addons/sourcemod/gamedata/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/plugins/* "$dir/addons/sourcemod/plugins/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/addons/sourcemod/translations/* "$dir/addons/sourcemod/translations/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/scripts/* "$dir/scripts/";
-        \cp -r /home/steam/L4D2-Competitive-Rework/cfg/* "$dir/cfg/";
+        \cp -r /root/L4D2-Competitive-Rework/addons/sourcemod/configs/* "$dir/addons/sourcemod/configs/";
+        \cp -r /root/L4D2-Competitive-Rework/addons/sourcemod/data/* "$dir/addons/sourcemod/data/";
+        \cp -r /root/L4D2-Competitive-Rework/addons/sourcemod/gamedata/* "$dir/addons/sourcemod/gamedata/";
+        \cp -r /root/L4D2-Competitive-Rework/addons/sourcemod/plugins/* "$dir/addons/sourcemod/plugins/";
+        \cp -r /root/L4D2-Competitive-Rework/addons/sourcemod/translations/* "$dir/addons/sourcemod/translations/";
+        \cp -r /root/L4D2-Competitive-Rework/scripts/* "$dir/scripts/";
+        \cp -r /root/L4D2-Competitive-Rework/cfg/* "$dir/cfg/";
         chmod 777 "$dir/"
         echo "Updated | $dir"
     else
